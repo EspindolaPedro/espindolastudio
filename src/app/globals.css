@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--black-1);
+
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-bricolage: var(--Bricolage_Grotesque);
+  --font-inter: var(--font-inter);
+
+  --black-1:#05060A;
+  --grayd-90:#0C0C0C;
+  --purple-900:#280048;
+  --purple-700: #450579;
+  --purple-500: #7A06D9;
+  --purple-100: #8012DA;
+  --bluep-300: #0085D3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
+.marquee {
+  animation: marquee 15s linear infinite;
+  white-space: nowrap; /* importante para o texto não quebrar */
+  display: inline-block; /* ou block dependendo do container */
+}
+
+
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-family: var(--font-inter) !important;
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+
+}
+
+@keyframes spin-glow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-glow {
+  animation: spin-glow 2s linear infinite;
+  /* Faz o gradiente girar */
+}
+
+.pattern-grid {
+  .magicpattern { 
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%2305060A%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23464976%22 stroke-width=%222%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22none%22 d=%22M0 0h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M105 0h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 0h105v105H210zM315 0h105v105H315zM420 0h105v105H420zM525 0h105v105H525zM630 0h105v105H630zM735 0h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497661%22 d=%22M840 0h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 0h105v105H945zM1050 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497662%22 d=%22M1155 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 0h105v105h-105zM1365 0h105v105h-105zM1470 0h105v105h-105zM1575 0h105v105h-105zM1680 0h105v105h-105zM1785 0h105v105h-105zM1890 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497639%22 d=%22M1995 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 105h105v105H0zM105 105h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c4%22 d=%22M210 105h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 105h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497659%22 d=%22M420 105h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 105h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497618%22 d=%22M630 105h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 105h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497647%22 d=%22M840 105h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d9%22 d=%22M945 105h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ec%22 d=%22M1050 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763e%22 d=%22M1260 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497654%22 d=%22M1365 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 105h105v105h-105zM1575 105h105v105h-105zM1680 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d9%22 d=%22M1785 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c5%22 d=%22M1995 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 210h105v105H0zM105 210h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ad%22 d=%22M210 210h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497629%22 d=%22M315 210h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 210h105v105H420zM525 210h105v105H525zM630 210h105v105H630zM735 210h105v105H735zM840 210h105v105H840zM945 210h105v105H945zM1050 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b6%22 d=%22M1155 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497698%22 d=%22M1365 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763c%22 d=%22M1470 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 210h105v105h-105zM1680 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497692%22 d=%22M1785 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649765d%22 d=%22M1890 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 210h105v105h-105zM0 315h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a0%22 d=%22M105 315h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 315h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a2%22 d=%22M315 315h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 315h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497627%22 d=%22M525 315h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M630 315h105v105H630zM735 315h105v105H735zM840 315h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a3%22 d=%22M945 315h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976cf%22 d=%22M1050 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 315h105v105h-105zM1260 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649768d%22 d=%22M1365 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 315h105v105h-105zM1575 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a9%22 d=%22M1680 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1890 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 315h105v105h-105zM0 420h105v105H0zM105 420h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b1%22 d=%22M210 420h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 420h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497696%22 d=%22M420 420h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 420h105v105H525zM630 420h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497637%22 d=%22M735 420h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e6%22 d=%22M840 420h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 420h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d1%22 d=%22M1050 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497610%22 d=%22M1155 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1260 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1365 420h105v105h-105zM1470 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649761c%22 d=%22M1575 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 420h105v105h-105zM1785 420h105v105h-105zM1890 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497690%22 d=%22M1995 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 525h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497613%22 d=%22M105 525h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763b%22 d=%22M210 525h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497676%22 d=%22M315 525h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 525h105v105H420zM525 525h105v105H525zM630 525h105v105H630zM735 525h105v105H735zM840 525h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a3%22 d=%22M945 525h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497685%22 d=%22M1050 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b7%22 d=%22M1260 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497629%22 d=%22M1365 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976de%22 d=%22M1470 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 525h105v105h-105zM1680 525h105v105h-105zM1785 525h105v105h-105zM1890 525h105v105h-105zM1995 525h105v105h-105zM0 630h105v105H0zM105 630h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976df%22 d=%22M210 630h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 630h105v105H315zM420 630h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e8%22 d=%22M525 630h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M630 630h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976f4%22 d=%22M735 630h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M840 630h105v105H840zM945 630h105v105H945zM1050 630h105v105h-105zM1155 630h105v105h-105zM1260 630h105v105h-105zM1365 630h105v105h-105zM1470 630h105v105h-105zM1575 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497615%22 d=%22M1680 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 630h105v105h-105zM1890 630h105v105h-105zM1995 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497691%22 d=%22M0 735h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 735h105v105H105zM210 735h105v105H210zM315 735h105v105H315zM420 735h105v105H420zM525 735h105v105H525zM630 735h105v105H630zM735 735h105v105H735zM840 735h105v105H840zM945 735h105v105H945zM1050 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497698%22 d=%22M1155 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497618%22 d=%22M1365 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497640%22 d=%22M1470 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497660%22 d=%22M1575 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497690%22 d=%22M1785 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 735h105v105h-105zM1995 735h105v105h-105zM0 840h105v105H0zM105 840h105v105H105zM210 840h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497621%22 d=%22M315 840h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M420 840h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 840h105v105H525zM630 840h105v105H630zM735 840h105v105H735zM840 840h105v105H840zM945 840h105v105H945zM1050 840h105v105h-105zM1155 840h105v105h-105zM1260 840h105v105h-105zM1365 840h105v105h-105zM1470 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b4%22 d=%22M1575 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 840h105v105h-105zM1785 840h105v105h-105zM1890 840h105v105h-105zM1995 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649761d%22 d=%22M0 945h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 945h105v105H105zM210 945h105v105H210zM315 945h105v105H315zM420 945h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e8%22 d=%22M525 945h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976aa%22 d=%22M630 945h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 945h105v105H735zM840 945h105v105H840zM945 945h105v105H945zM1050 945h105v105h-105zM1155 945h105v105h-105zM1260 945h105v105h-105zM1365 945h105v105h-105zM1470 945h105v105h-105zM1575 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976fc%22 d=%22M1680 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497666%22 d=%22M1785 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c5%22 d=%22M1995 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 1050h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ab%22 d=%22M105 1050h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 1050h105v105H210zM315 1050h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497632%22 d=%22M420 1050h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1050h105v105H525zM630 1050h105v105H630zM735 1050h105v105H735zM840 1050h105v105H840zM945 1050h105v105H945zM1050 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1155 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b2%22 d=%22M1260 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1365 1050h105v105h-105zM1470 1050h105v105h-105zM1575 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976bd%22 d=%22M1680 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 1050h105v105h-105zM1890 1050h105v105h-105zM1995 1050h105v105h-105zM0 1155h105v105H0zM105 1155h105v105H105zM210 1155h105v105H210zM315 1155h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497660%22 d=%22M420 1155h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1155h105v105H525zM630 1155h105v105H630zM735 1155h105v105H735zM840 1155h105v105H840zM945 1155h105v105H945zM1050 1155h105v105h-105zM1155 1155h105v105h-105zM1260 1155h105v105h-105zM1365 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497607%22 d=%22M1470 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 1155h105v105h-105zM1680 1155h105v105h-105zM1785 1155h105v105h-105zM1890 1155h105v105h-105zM1995 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649760b%22 d=%22M0 1260h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 1260h105v105H105zM210 1260h105v105H210zM315 1260h105v105H315zM420 1260h105v105H420zM525 1260h105v105H525zM630 1260h105v105H630zM735 1260h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e2%22 d=%22M840 1260h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 1260h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497651%22 d=%22M1050 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976fd%22 d=%22M1155 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497658%22 d=%22M1365 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497681%22 d=%22M1575 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497653%22 d=%22M1680 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 1260h105v105h-105zM1890 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497689%22 d=%22M1995 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 1365h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M105 1365h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 1365h105v105H210zM315 1365h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976dd%22 d=%22M420 1365h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1365h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649765f%22 d=%22M630 1365h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 1365h105v105H735zM840 1365h105v105H840zM945 1365h105v105H945zM1050 1365h105v105h-105zM1155 1365h105v105h-105zM1260 1365h105v105h-105zM1365 1365h105v105h-105zM1470 1365h105v105h-105zM1575 1365h105v105h-105zM1680 1365h105v105h-105zM1785 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a4%22 d=%22M1890 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.7%22%2F%3E%3Cstop offset=%2275%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
+}
+
+}
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
 }
