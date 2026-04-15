@@ -23,8 +23,8 @@ Todos os melhoramentos técnicos foram implementados no código. Agora execute o
 ### 1. **Google Search Console**
 ```
 □ Acesse: https://search.google.com/search-console
-□ Adicione sua propriedade: https://espindolastudio.com
-□ Envie o sitemap: https://espindolastudio.com/sitemap.xml
+□ Adicione sua propriedade: https://espindolastudio.vercel.app
+□ Envie o sitemap: https://espindolastudio.vercel.app/sitemap.xml
 □ Verifique o domínio
 □ Adicione o código de verificação em verification.google em layout.tsx
 ```

@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://espindolastudio.com",
+    url: "https://espindolastudio.vercel.app",
     siteName: "Espindola Studio",
     title: "Espindola Studio - Agência Digital em Campo Grande MS | Gestor de Tráfego e Desenvolvedor de Sites",
     description:
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://espindolastudio.com",
+    canonical: "https://espindolastudio.vercel.app",
   },
   verification: {
     google: "D2xqzCGLdPFI6dSUYokldo58DyYLAtvxw_2NGAPw_d4", // Adicionar depois de gerar
@@ -106,12 +106,12 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://espindolastudio.com",
+    "@id": "https://espindolastudio.vercel.app",
     name: "Espindola Studio",
-    image: "https://espindolastudio.com/logo.svg",
+    image: "https://espindolastudio.vercel.app/logo.svg",
     description:
       "Agência digital especializada em soluções tech, IA, sites e tráfego estratégico em Campo Grande, MS",
-    url: "https://espindolastudio.com",
+    url: "https://espindolastudio.vercel.app",
     telephone: "+55 67 99159-3756",
     email: "studioespindola@gmail.com",
     address: {

@@ -59,25 +59,25 @@ export function SEOStructuredData() {
         "@type": "ListItem",
         position: 1,
         name: "Espindola Studio",
-        item: "https://espindolastudio.com",
+        item: "https://espindolastudio.vercel.app",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Serviços",
-        item: "https://espindolastudio.com#servicos",
+        item: "https://espindolastudio.vercel.app#servicos",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Arquitetura",
-        item: "https://espindolastudio.com#arquitetura",
+        item: "https://espindolastudio.vercel.app#arquitetura",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Contato",
-        item: "https://espindolastudio.com#contato",
+        item: "https://espindolastudio.vercel.app#contato",
       },
     ],
   };
@@ -86,8 +86,8 @@ export function SEOStructuredData() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Espindola Studio",
-    url: "https://espindolastudio.com",
-    logo: "https://espindolastudio.com/logo.svg",
+    url: "https://espindolastudio.vercel.app",
+    logo: "https://espindolastudio.vercel.app/logo.svg",
     description:
       "Agência digital especializada em soluções tech, IA, sites e tráfego estratégico em Campo Grande, MS",
     sameAs: [
