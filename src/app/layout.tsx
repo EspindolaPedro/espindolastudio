@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
+  verification: {
+    google: 'D2xqzCGLdPFI6dSUYokldo58DyYLAtvxw_2NGAPw_d4',
+  },
   description:
     "Agência digital em Campo Grande, MS especializada em soluções tech, IA, sites, e-commerce e tráfego estratégico. Estruturamos presença digital para empresas que querem crescer com inteligência.",
   keywords: [
