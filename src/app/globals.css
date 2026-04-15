@@ -1,81 +1,1435 @@
 @import "tailwindcss";
+@import url("https://fonts.cdnfonts.com/css/metropolis-2");
 
 :root {
-  --background: var(--black-1);
-
+  --background: #000;
+  --surface: #0a0b0f;
+  --surface-soft: #101116;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f5f7fb;
+  --muted: #9ea6b3;
+  --accent: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
-
-  --font-bricolage: var(--Bricolage_Grotesque);
   --font-inter: var(--font-inter);
-
-  --black-1:#05060A;
-  --grayd-90:#0C0C0C;
-  --purple-900:#280048;
-  --purple-700: #450579;
-  --purple-500: #7A06D9;
-  --purple-100: #8012DA;
-  --bluep-300: #0085D3;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+* {
+  box-sizing: border-box;
 }
 
-.marquee {
-  animation: marquee 15s linear infinite;
-  white-space: nowrap; /* importante para o texto não quebrar */
-  display: inline-block; /* ou block dependendo do container */
+html {
+  scroll-behavior: smooth;
 }
-
 
 body {
-  background: var(--background);
-  color: #fff;
-  font-family: var(--font-inter) !important;
-  padding:0;
-  margin:0;
-  box-sizing:border-box;
-
+  margin: 0;
+  min-height: 100vh;
+  background: #000;
+  color: var(--text);
+  color-scheme: dark;
+  font-family: var(--font-inter), Inter, sans-serif;
 }
 
-@keyframes spin-glow {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.animate-spin-glow {
-  animation: spin-glow 2s linear infinite;
-  /* Faz o gradiente girar */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.pattern-grid {
-  .magicpattern { 
+img {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h2,
+h3,
+.brand-mark {
+  font-family: "Metropolis", var(--font-inter), sans-serif;
+}
+
+.page-shell {
+  position: relative;
+}
+
+.page-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 82%);
+  content: "";
+  pointer-events: none;
+}
+
+.shell {
+  width: min(1120px, calc(100vw - 28px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 16px;
+  z-index: 200;
+  padding-top: 16px;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(8, 9, 12, 0.82);
+  backdrop-filter: blur(18px);
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0 !important;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(8, 9, 12, 0.82);
+  backdrop-filter: blur(18px);
+  position: relative;
+  z-index: 999;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a {
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--ghost {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.hero {
+  position: relative;
+  padding: 108px 0 42px;
+  background:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.02), transparent 24%),
+    linear-gradient(180deg, rgba(2, 2, 2, 1) 0%, rgba(4, 5, 8, 0.96) 52%, rgba(0, 0, 0, 0) 100%);
+  overflow: hidden;
+}
+
+.hero__galaxy {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.hero__galaxy canvas {
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: repeat;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%2305060A%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23464976%22 stroke-width=%222%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22none%22 d=%22M0 0h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M105 0h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 0h105v105H210zM315 0h105v105H315zM420 0h105v105H420zM525 0h105v105H525zM630 0h105v105H630zM735 0h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497661%22 d=%22M840 0h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 0h105v105H945zM1050 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497662%22 d=%22M1155 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 0h105v105h-105zM1365 0h105v105h-105zM1470 0h105v105h-105zM1575 0h105v105h-105zM1680 0h105v105h-105zM1785 0h105v105h-105zM1890 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497639%22 d=%22M1995 0h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 105h105v105H0zM105 105h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c4%22 d=%22M210 105h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 105h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497659%22 d=%22M420 105h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 105h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497618%22 d=%22M630 105h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 105h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497647%22 d=%22M840 105h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d9%22 d=%22M945 105h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ec%22 d=%22M1050 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763e%22 d=%22M1260 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497654%22 d=%22M1365 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 105h105v105h-105zM1575 105h105v105h-105zM1680 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d9%22 d=%22M1785 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c5%22 d=%22M1995 105h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 210h105v105H0zM105 210h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ad%22 d=%22M210 210h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497629%22 d=%22M315 210h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 210h105v105H420zM525 210h105v105H525zM630 210h105v105H630zM735 210h105v105H735zM840 210h105v105H840zM945 210h105v105H945zM1050 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b6%22 d=%22M1155 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497698%22 d=%22M1365 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763c%22 d=%22M1470 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 210h105v105h-105zM1680 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497692%22 d=%22M1785 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649765d%22 d=%22M1890 210h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 210h105v105h-105zM0 315h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a0%22 d=%22M105 315h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 315h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a2%22 d=%22M315 315h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 315h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497627%22 d=%22M525 315h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M630 315h105v105H630zM735 315h105v105H735zM840 315h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a3%22 d=%22M945 315h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976cf%22 d=%22M1050 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 315h105v105h-105zM1260 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649768d%22 d=%22M1365 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 315h105v105h-105zM1575 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a9%22 d=%22M1680 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1890 315h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 315h105v105h-105zM0 420h105v105H0zM105 420h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b1%22 d=%22M210 420h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 420h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497696%22 d=%22M420 420h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 420h105v105H525zM630 420h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497637%22 d=%22M735 420h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e6%22 d=%22M840 420h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 420h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976d1%22 d=%22M1050 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497610%22 d=%22M1155 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1260 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1365 420h105v105h-105zM1470 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649761c%22 d=%22M1575 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 420h105v105h-105zM1785 420h105v105h-105zM1890 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497690%22 d=%22M1995 420h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 525h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497613%22 d=%22M105 525h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649763b%22 d=%22M210 525h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497676%22 d=%22M315 525h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M420 525h105v105H420zM525 525h105v105H525zM630 525h105v105H630zM735 525h105v105H735zM840 525h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a3%22 d=%22M945 525h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497685%22 d=%22M1050 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1155 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b7%22 d=%22M1260 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497629%22 d=%22M1365 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976de%22 d=%22M1470 525h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 525h105v105h-105zM1680 525h105v105h-105zM1785 525h105v105h-105zM1890 525h105v105h-105zM1995 525h105v105h-105zM0 630h105v105H0zM105 630h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976df%22 d=%22M210 630h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M315 630h105v105H315zM420 630h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e8%22 d=%22M525 630h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M630 630h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976f4%22 d=%22M735 630h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M840 630h105v105H840zM945 630h105v105H945zM1050 630h105v105h-105zM1155 630h105v105h-105zM1260 630h105v105h-105zM1365 630h105v105h-105zM1470 630h105v105h-105zM1575 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497615%22 d=%22M1680 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 630h105v105h-105zM1890 630h105v105h-105zM1995 630h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497691%22 d=%22M0 735h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 735h105v105H105zM210 735h105v105H210zM315 735h105v105H315zM420 735h105v105H420zM525 735h105v105H525zM630 735h105v105H630zM735 735h105v105H735zM840 735h105v105H840zM945 735h105v105H945zM1050 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497698%22 d=%22M1155 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497618%22 d=%22M1365 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497640%22 d=%22M1470 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497660%22 d=%22M1575 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497690%22 d=%22M1785 735h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 735h105v105h-105zM1995 735h105v105h-105zM0 840h105v105H0zM105 840h105v105H105zM210 840h105v105H210z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497621%22 d=%22M315 840h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M420 840h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 840h105v105H525zM630 840h105v105H630zM735 840h105v105H735zM840 840h105v105H840zM945 840h105v105H945zM1050 840h105v105h-105zM1155 840h105v105h-105zM1260 840h105v105h-105zM1365 840h105v105h-105zM1470 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b4%22 d=%22M1575 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1680 840h105v105h-105zM1785 840h105v105h-105zM1890 840h105v105h-105zM1995 840h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649761d%22 d=%22M0 945h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 945h105v105H105zM210 945h105v105H210zM315 945h105v105H315zM420 945h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e8%22 d=%22M525 945h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976aa%22 d=%22M630 945h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 945h105v105H735zM840 945h105v105H840zM945 945h105v105H945zM1050 945h105v105h-105zM1155 945h105v105h-105zM1260 945h105v105h-105zM1365 945h105v105h-105zM1470 945h105v105h-105zM1575 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976fc%22 d=%22M1680 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497666%22 d=%22M1785 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1890 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976c5%22 d=%22M1995 945h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 1050h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976ab%22 d=%22M105 1050h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 1050h105v105H210zM315 1050h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497632%22 d=%22M420 1050h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1050h105v105H525zM630 1050h105v105H630zM735 1050h105v105H735zM840 1050h105v105H840zM945 1050h105v105H945zM1050 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649766a%22 d=%22M1155 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976b2%22 d=%22M1260 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1365 1050h105v105h-105zM1470 1050h105v105h-105zM1575 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976bd%22 d=%22M1680 1050h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 1050h105v105h-105zM1890 1050h105v105h-105zM1995 1050h105v105h-105zM0 1155h105v105H0zM105 1155h105v105H105zM210 1155h105v105H210zM315 1155h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497660%22 d=%22M420 1155h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1155h105v105H525zM630 1155h105v105H630zM735 1155h105v105H735zM840 1155h105v105H840zM945 1155h105v105H945zM1050 1155h105v105h-105zM1155 1155h105v105h-105zM1260 1155h105v105h-105zM1365 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497607%22 d=%22M1470 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1575 1155h105v105h-105zM1680 1155h105v105h-105zM1785 1155h105v105h-105zM1890 1155h105v105h-105zM1995 1155h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649760b%22 d=%22M0 1260h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M105 1260h105v105H105zM210 1260h105v105H210zM315 1260h105v105H315zM420 1260h105v105H420zM525 1260h105v105H525zM630 1260h105v105H630zM735 1260h105v105H735z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976e2%22 d=%22M840 1260h105v105H840z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M945 1260h105v105H945z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497651%22 d=%22M1050 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976fd%22 d=%22M1155 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1260 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497658%22 d=%22M1365 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1470 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497681%22 d=%22M1575 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497653%22 d=%22M1680 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1785 1260h105v105h-105zM1890 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497689%22 d=%22M1995 1260h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 1365h105v105H0z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%2346497628%22 d=%22M105 1365h105v105H105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M210 1365h105v105H210zM315 1365h105v105H315z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976dd%22 d=%22M420 1365h105v105H420z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M525 1365h105v105H525z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%234649765f%22 d=%22M630 1365h105v105H630z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M735 1365h105v105H735zM840 1365h105v105H840zM945 1365h105v105H945zM1050 1365h105v105h-105zM1155 1365h105v105h-105zM1260 1365h105v105h-105zM1365 1365h105v105h-105zM1470 1365h105v105h-105zM1575 1365h105v105h-105zM1680 1365h105v105h-105zM1785 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22%23464976a4%22 d=%22M1890 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3Cpath fill=%22none%22 d=%22M1995 1365h105v105h-105z%22 stroke-width=%222.1%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.7%22%2F%3E%3Cstop offset=%2275%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
 }
 
+.hero__bg {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.45;
+  pointer-events: none;
 }
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
+
+.hero__bg--left {
+  top: 80px;
+  left: -90px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.025), transparent 72%);
+  animation: float 9s ease-in-out infinite;
+}
+
+.hero__bg--right {
+  top: 30px;
+  right: -110px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.018), transparent 72%);
+  animation: float 11s ease-in-out infinite reverse;
+}
+
+.hero__content--centered {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #e9edf4;
+  font-size: 0.8rem;
+}
+
+.hero__content--centered .eyebrow {
+  margin: 0 auto;
+}
+
+.hero h1 {
+  max-width: 30ch;
+  margin: 10px auto 0;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: clamp(3rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font: bold;
+}
+
+.hero h1 span {
+  color: #d8dde8;
+}
+
+.hero__lead {
+  max-width: 60ch;
+  margin: 24px auto 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.brand-strip {
+  padding: 0 0 24px;
+}
+
+.brand-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 26px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.section--compact {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+.manifesto-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 28px;
+  align-items: end;
+}
+
+.manifesto-block__heading h2,
+.gallery-section__heading h2,
+.contact-block h2 {
+  margin-top: 16px;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.manifesto-block__copy {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.manifesto-block__copy p + p {
+  margin-top: 14px;
+}
+
+.service-statements {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.service-statements__divider {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.16) 16%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.16) 84%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.service-statement {
+  position: relative;
+  padding: 0 18px;
+}
+
+.service-statement__index {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.service-statement h3 {
+  max-width: 18ch;
+  margin-top: 18px;
+  font-size: 1.5rem;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.service-statement p {
+  max-width: 42ch;
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric-box {
+  padding: 14px 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.metric-box strong {
+  display: block;
+  font-family: "Metropolis", var(--font-inter), sans-serif;
+  font-size: 1.45rem;
+}
+
+.metric-box span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.architecture-layout {
+  display: grid;
+  gap: 42px;
+}
+
+.architecture-intro {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.architecture-intro h2 {
+  max-width: 16ch;
+  margin-top: 16px;
+  margin-inline: auto;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.architecture-intro p {
+  max-width: 54ch;
+  margin-top: 18px;
+  margin-inline: auto;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.architecture-timeline {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  margin-top: 8px;
+}
+
+.architecture-timeline::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  content: "";
+}
+
+.architecture-timeline__progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  z-index: 0;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.timeline-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 84px 1fr;
+  align-items: center;
+  min-height: 220px;
+}
+
+.timeline-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.015);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.timeline-step__icon svg {
+  width: 22px;
+  height: 22px;
+  color: #fff;
+}
+
+.timeline-step__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+}
+
+.timeline-step--left .timeline-step__content {
+  grid-column: 1;
+  justify-self: end;
+  padding-right: 24px;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.timeline-step--right .timeline-step__content {
+  grid-column: 3;
+  justify-self: start;
+  padding-left: 24px;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.timeline-step__phase {
+  display: block;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.timeline-step__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: #ffffff;
+  margin-left: -8px;
+  margin-top: -8px;
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.045),
+    0 0 14px rgba(255, 255, 255, 0.32),
+    0 0 28px rgba(255, 255, 255, 0.14);
+}
+
+.timeline-step__content strong {
+  display: block;
+  font-family: "Metropolis", var(--font-inter), sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.timeline-step__content p {
+  max-width: 42ch;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.evolution-banner {
+  position: relative;
+  min-height: 150vh;
+  padding: 0;
+  text-align: center;
+  z-index: 0;
+}
+
+.evolution-banner .shell {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.evolution-banner__content p {
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.evolution-banner__content h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 0.92;
+}
+
+.evolution-banner__content span {
+  display: block;
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.light-panel-section {
+  position: relative;
+  min-height: 180vh;
+  margin-top: -62vh;
+  padding: 0;
+  background: #f2efe9;
+  z-index: 5;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.light-panel {
+  position: sticky;
+  top: 86px;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 28px;
+  border-radius: 28px;
+  background: transparent;
+  color: #090b10;
+}
+
+.light-panel__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 24px;
+  align-items: end;
+}
+
+.light-panel__heading {
+  max-width: 740px;
+}
+
+.light-panel__heading span {
+  color: rgba(9, 11, 16, 0.45);
+  font-size: 0.82rem;
+}
+
+.light-panel__heading h2 {
+  margin-top: 14px;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.light-panel__intro {
+  max-width: 38ch;
+  color: rgba(9, 11, 16, 0.64);
+  line-height: 1.75;
+}
+
+.light-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.light-card {
+  min-height: 168px;
+  padding: 20px;
+  border: 1px solid rgba(9, 11, 16, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.42);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.light-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: rgba(9, 11, 16, 0.06);
+  color: #090b10;
+}
+
+.light-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.light-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(9, 11, 16, 0.08);
+}
+
+.light-card--featured {
+  grid-column: span 3;
+  display: grid;
+  align-content: center;
+  min-height: 190px;
+  padding: 26px;
+  background: #fffdf9;
+}
+
+.light-card--featured .light-card__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.light-card--featured .light-card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.light-card strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.light-card--featured strong {
+  max-width: 22ch;
+  font-size: 1.3rem;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.light-card p {
+  margin-top: 10px;
+  color: rgba(9, 11, 16, 0.64);
+  line-height: 1.7;
+}
+
+.light-card--featured p {
+  max-width: 60ch;
+  margin-top: 12px;
+}
+
+.gallery-section__heading {
+  max-width: 940px;
+}
+
+.dark-transition-section {
+  position: relative;
+  min-height: 120vh;
+  margin-top: 0;
+  padding: 0;
+  background: var(--gallery-bg, #000);
+  z-index: 6;
+  transition: background-color 0.2s linear;
+}
+
+.gallery-section--overlay {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 0 24px;
+  background: transparent;
+  color: var(--gallery-fg, var(--text));
+}
+
+.gallery-section--overlay .section-kicker,
+.gallery-section--overlay h2 {
+  color: var(--gallery-fg, var(--text));
+}
+
+.projects-carousel {
+  position: relative;
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 8px 0;
+}
+
+.projects-carousel::before,
+.projects-carousel::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+}
+
+.projects-carousel::before {
+  left: 0;
+  background: var(--gallery-overlay-left);
+}
+
+.projects-carousel::after {
+  right: 0;
+  background: var(--gallery-overlay-right);
+}
+
+.projects-carousel__track {
+  display: flex;
+  gap: 2px;
+  width: max-content;
+  animation: projects-marquee 30s linear infinite;
+}
+
+.carousel-project {
+  flex: 0 0 520px;
+}
+
+.carousel-project__media {
+  position: relative;
+  min-height: 680px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.carousel-project__media img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.contact-section {
+  padding-top: 64px;
+  padding-bottom: 28px;
+}
+
+.contact-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 48px;
+  align-items: end;
+}
+
+.contact-block__lead {
+  display: grid;
+  gap: 18px;
+}
+
+.contact-block h2 {
+  max-width: 16ch;
+}
+
+.contact-block__text {
+  max-width: 48ch;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.contact-actions__label,
+.contact-actions__meta span,
+.site-footer__bottom span:last-child {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 4px;
+}
+
+.contact-actions__links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-link {
+  width: fit-content;
+  font-family: "Metropolis", var(--font-inter), sans-serif;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.contact-link:hover {
+  opacity: 0.7;
+  transform: translateX(2px);
+}
+
+.contact-actions__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-style: normal;
+}
+
+.footer-column a,
+.site-footer__bottom span:first-child {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.site-footer {
+  padding: 0 0 36px;
+}
+
+.site-footer__inner {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 22px;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.75fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.site-footer__brand {
+  max-width: 30ch;
+}
+
+.site-footer__brand p {
+  margin-top: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column--address {
+  font-style: normal;
+}
+
+.footer-column a {
+  color: #e8edf6;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-column p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.footer-contact-group {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.footer-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: #e8edf6;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer-contact-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-contact-link span {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.footer-arrow {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  flex-shrink: 0;
+  color: currentColor;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.footer-contact-link:hover .footer-arrow {
+  transform: translate(2px, -2px);
+}
+
+.footer-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes float {
+  0%,
   100% {
-    transform: rotate(360deg);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
   }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
+@keyframes projects-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 9px));
+  }
+}
+
+@media (max-width: 1024px) {
+  .manifesto-block,
+  .architecture-layout,
+  .service-statements,
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .architecture-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .light-panel__header {
+    grid-template-columns: 1fr;
+  }
+
+  .light-panel__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .light-card--featured {
+    grid-column: span 2;
+  }
+
+  .contact-block,
+  .site-footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-timeline::before {
+    left: 30px;
+    transform: none;
+  }
+
+  .architecture-timeline__progress {
+    left: 30px;
+    transform: none;
+  }
+
+  .timeline-step {
+    grid-template-columns: 60px 1fr;
+    gap: 18px;
+    min-height: auto;
+  }
+
+  .timeline-step__icon {
+    grid-column: 1;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+  }
+
+  .timeline-step__content,
+  .timeline-step--left .timeline-step__content,
+  .timeline-step--right .timeline-step__content {
+    grid-column: 2;
+    justify-self: start;
+    max-width: 100%;
+    padding: 0;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .timeline-step__node {
+    top: 28px;
+    left: 30px;
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+}
+
+@media (max-width: 820px) {
+  .nav-links {
+    display: none;
+  }
+
+  .site-header__inner .button {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 84px;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.3rem, 12vw, 1.2rem);
+    line-height: 2.4rem;
+  }
+
+  .manifesto-block,
+  .service-statements,
+  .metrics-row,
+  .light-panel__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-statements__divider {
+    display: none;
+  }
+
+  .button,
+  .button--ghost {
+    width: 100%;
+  }
+
+  .hero__actions,
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .light-card--featured {
+    grid-column: span 1;
+  }
+
+  .evolution-banner {
+    min-height: 155svh;
+  }
+
+  .evolution-banner .shell {
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
+    padding-bottom: 0;
+  }
+
+  .light-panel-section {
+    min-height: auto;
+    margin-top: -58svh;
+    padding: 58svh 0 0;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+  }
+
+  .light-panel {
+    position: relative;
+    top: 0;
+    min-height: auto;
+    padding: 24px 0 16px;
+  }
+
+  .dark-transition-section {
+    min-height: auto;
+    margin-top: 0;
+    padding-top: 36px;
+  }
+
+  .gallery-section--overlay {
+    position: relative;
+    top: 0;
+    min-height: auto;
+    padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100vw - 18px, 1120px);
+  }
+
+  .site-header__inner {
+    padding: 11px 12px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .hero {
+    padding-top: 72px;
+  }
+
+  .service-statement h3 {
+    max-width: 100%;
+  }
+
+  .projects-carousel::before,
+  .projects-carousel::after {
+    width: 56px;
+  }
+
+  .carousel-project {
+    flex-basis: 360px;
+  }
+
+  .carousel-project__media {
+    min-height: 500px;
+  }
+
+  .contact-block {
+    gap: 28px;
+  }
+
+  .evolution-banner {
+    min-height: 148svh;
+  }
+
+  .evolution-banner .shell {
+    min-height: 100svh;
+    position: sticky;
+    top: 0;
+  }
+
+  .light-panel-section {
+    min-height: auto;
+    margin-top: -60svh;
+    padding-top: 10svh;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+
+  .light-panel {
+    padding-top: 20px;
+  }
+
+  .footer-contact-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+
+  .footer-contact-link {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-trigger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  z-index: 99999;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+
+.mobile-menu-trigger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  position: relative;
+}
+
+.mobile-menu-trigger:hover span {
+  background: #fff;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0 !important;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.mobile-menu__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  gap: 0;
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobile-menu__link:hover {
+  color: #fff;
+}
+
+.mobile-menu__arrow {
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-menu__link:hover .mobile-menu__arrow {
+  transform: translate(2px, -2px);
+}
+
+.mobile-menu__divider {
+  width: 60%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+}
+
+.mobile-menu__cta {
+  margin-top: 1rem;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.mobile-menu__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.mobile-menu__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 820px) {
+  .mobile-menu-trigger {
+    display: flex;
+  }
+
+  .site-header__inner .button:not(.mobile-menu-trigger) {
+    display: none;
+  }
 }

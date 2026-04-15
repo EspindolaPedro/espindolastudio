@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+
+Disallow: /_next/
+Disallow: /api/
+Disallow: /.well-known/
+
+Sitemap: https://espindolastudio.com/sitemap.xml
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
