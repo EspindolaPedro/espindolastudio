@@ -9,6 +9,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Espindola Studio - Agência Digital em Campo Grande MS | Soluções Tech, IA e Performance",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   description:
     "Agência digital em Campo Grande, MS especializada em soluções tech, IA, sites, e-commerce e tráfego estratégico. Estruturamos presença digital para empresas que querem crescer com inteligência.",
   keywords: [
